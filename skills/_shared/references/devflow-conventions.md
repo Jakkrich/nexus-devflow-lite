@@ -71,6 +71,20 @@ Use one value per subtask:
 
 Default to `Required` for bug fixes, business logic, auth, permissions, persistence, parsers, API contracts, security, concurrency, and meaningful user-visible behavior.
 
+## TDD Expected-Failure Subtasks
+
+Some plans split test creation and implementation into separate subtasks.
+
+For a test-only subtask, an expected failing verification may count as complete only when all are true:
+
+- The subtask's purpose is to add or update tests.
+- The failure matches the missing behavior described in `plan.md`.
+- Existing unrelated tests still pass, or unrelated failures are clearly identified as pre-existing.
+- `task_log.md` records the command, failing test name, expected failure, and next implementation subtask.
+- The plan checkbox is marked complete with a note such as `expected failing test added`.
+
+For implementation subtasks, verification must pass before marking the subtask complete.
+
 ## Next Command Pattern
 
 - After intake: `devflow-plan {ID}`

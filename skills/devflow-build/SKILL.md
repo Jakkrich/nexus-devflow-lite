@@ -21,6 +21,8 @@ Before working, read:
 - Read `spec.md`, `plan.md`, and `task_log.md` before editing.
 - Implement only one unchecked subtask at a time unless the user clearly asks to continue.
 - Run the subtask verification before marking it complete.
+- For test-only subtasks, an expected failing test can complete the subtask when the failure exactly matches missing planned behavior.
+- For implementation subtasks, verification must pass before marking the subtask complete.
 
 ## Required Approval Gate
 
@@ -52,9 +54,13 @@ devflow-build {ID}
 5. Follow referenced patterns.
 6. If test decision is `Required`, create or update tests before or with the code change.
 7. Run the subtask verification.
-8. Update the subtask checkbox in `plan.md`.
-9. Append an entry to `task_log.md` with action, files changed, verification command, result, and notes.
-10. If implementation reveals the plan is wrong, stop and recommend `devflow-plan {ID}`.
+8. Decide completion:
+   - Test-only subtask: may complete on an expected failing test that proves missing planned behavior.
+   - Implementation subtask: complete only when verification passes.
+   - Unexpected failure: leave unchecked and stop.
+9. Update the subtask checkbox in `plan.md` only when the completion rule is satisfied.
+10. Append an entry to `task_log.md` with action, files changed, verification command, result, and notes.
+11. If implementation reveals the plan is wrong, stop and recommend `devflow-plan {ID}`.
 
 ## Output
 
