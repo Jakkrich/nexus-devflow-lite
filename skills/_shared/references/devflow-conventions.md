@@ -73,8 +73,7 @@ Default to `Required` for bug fixes, business logic, auth, permissions, persiste
 
 ## Next Command Pattern
 
-- After intake: `/31-Plan {ID}`
-- After approved planning: `/32-Code {ID}`
-- After build: `/33-Verify {ID}`
-- After failed verification: `/32-Code {ID}`
-
+- After intake: `devflow-plan {ID}`
+- After approved planning: `devflow-build {ID}`
+- After build: `devflow-verify {ID}`
+- After failed verification: `devflow-build {ID}`

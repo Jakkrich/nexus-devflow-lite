@@ -42,5 +42,4 @@
 ## Next
 
 - If pass: human approval or commit workflow later.
-- If fail: `/32-Code {ID}`.
-
+- If fail: `devflow-build {ID}`.

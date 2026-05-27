@@ -1,6 +1,6 @@
 ---
 name: devflow-verify
-description: Markdown-first DevFlow verification. Use for /33-Verify, reviewing .workspaces/specs/{ID}-*/ spec.md, plan.md, task_log.md, changed files, and verification evidence, then writing qa_report.md with a Pass or Fail verdict. Does not create JSON artifacts, use dashboards, or require a CLI.
+description: Markdown-first DevFlow verification. Use for devflow-verify, reviewing .workspaces/specs/{ID}-*/ spec.md, plan.md, task_log.md, changed files, and verification evidence, then writing qa_report.md with a Pass or Fail verdict. Does not create JSON artifacts, use dashboards, or require a CLI.
 ---
 
 # DevFlow Verify
@@ -24,7 +24,7 @@ Before working, read:
 ## Input
 
 ```text
-/33-Verify {ID}
+devflow-verify {ID}
 ```
 
 ## Process
@@ -50,4 +50,4 @@ Report:
 - Residual risk
 - Next command:
   - If pass: human approval or commit workflow later
-  - If fail: `/32-Code {ID}`
+  - If fail: `devflow-build {ID}`

@@ -38,5 +38,4 @@
 
 ## Next
 
-Recommended: `/31-Plan {ID}`
-
+Recommended: `devflow-plan {ID}`

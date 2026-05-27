@@ -12,25 +12,25 @@ This is the lightweight version of Nexus-DevFlow:
 Install after publishing this repository:
 
 ```bash
-npx skills add <owner>/nexus-devflow-lite
+npx skills add Jakkrich/nexus-devflow-lite
 ```
 
 Install one skill:
 
 ```bash
-npx skills add <owner>/nexus-devflow-lite --skill devflow-ask
+npx skills add Jakkrich/nexus-devflow-lite --skill devflow-ask
 ```
 
 ## Current Status
 
 Usable now:
 
-| Skill | Command | Status | Purpose |
+| Skill | Stage | Status | Purpose |
 | --- | --- | --- | --- |
-| `devflow-ask` | `/30-Task` | Ready | Create a task workspace with `spec.md` and `task_log.md`. |
-| `devflow-plan` | `/31-Plan` | Ready | Create `plan.md` with phases, subtasks, test decisions, and approval gate. |
-| `devflow-build` | `/32-Code` | Ready with approval gate | Implement an approved plan one subtask at a time. |
-| `devflow-verify` | `/33-Verify` | Ready | Produce `qa_report.md` with evidence and pass/fail verdict. |
+| `devflow-ask` | Task intake | Ready | Create a task workspace with `spec.md` and `task_log.md`. |
+| `devflow-plan` | Planning | Ready | Create `plan.md` with phases, subtasks, test decisions, and approval gate. |
+| `devflow-build` | Build | Ready with approval gate | Implement an approved plan one subtask at a time. |
+| `devflow-verify` | Verification | Ready | Produce `qa_report.md` with evidence and pass/fail verdict. |
 
 Dry-run coverage so far:
 
@@ -59,20 +59,20 @@ Task artifacts live in the target project:
 ## Workflow
 
 ```text
-/30-Task  -> devflow-ask
-/31-Plan  -> devflow-plan
-/32-Code  -> devflow-build
-/33-Verify -> devflow-verify
+devflow-ask    -> task intake
+devflow-plan   -> implementation plan
+devflow-build  -> approved implementation
+devflow-verify -> verification report
 ```
 
 Typical flow:
 
 ```text
-/30-Task 001 Add authentication lockout
-/31-Plan 001
+devflow-ask 001 Add authentication lockout
+devflow-plan 001
 # user reviews plan.md and approves it
-/32-Code 001
-/33-Verify 001
+devflow-build 001
+devflow-verify 001
 ```
 
 ## Rules
@@ -112,8 +112,36 @@ skills/
 
 Recommended next steps:
 
-1. Refine `devflow-build` for TDD expected-failure subtasks.
-2. Complete an approved build path through implementation.
-3. Dry-run `devflow-verify` after a completed build.
-4. Add the next skills only after core flow is stable: `devflow-test`, `devflow-debug`, `devflow-review`, `devflow-commit`.
+1. Add `devflow-feature` for interactive feature discovery before task intake.
+2. Refine `devflow-build` for TDD expected-failure subtasks.
+3. Complete an approved build path through implementation.
+4. Dry-run `devflow-verify` after a completed build.
+5. Add later skills only after core flow is stable: `devflow-test`, `devflow-debug`, `devflow-review`, `devflow-commit`.
 
+## Proposed: devflow-feature
+
+`devflow-feature` should be the discovery skill before `devflow-ask`.
+
+Purpose:
+
+- Pull hidden requirements out of the user through short interaction.
+- Discuss feasibility, risks, and alternatives before creating a task.
+- Turn vague feature ideas into a concise feature brief.
+- Recommend whether to proceed to `devflow-ask`.
+
+Suggested artifacts:
+
+```text
+.workspaces/features/{slug}/
+  feature_brief.md
+```
+
+Recommended flow:
+
+```text
+devflow-feature Add team invite flow
+devflow-ask 001 Add team invite flow
+devflow-plan 001
+devflow-build 001
+devflow-verify 001
+```

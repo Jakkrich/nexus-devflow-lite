@@ -14,5 +14,4 @@ Status: Ready For Planning
   - `.workspaces/specs/{ID}-{slug}/task_log.md`
 - Verification: Workspace files exist.
 - Result: Ready for planning.
-- Notes: Next command `/31-Plan {ID}`.
-
+- Notes: Next skill `devflow-plan {ID}`.

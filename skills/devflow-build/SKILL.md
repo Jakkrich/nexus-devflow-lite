@@ -1,6 +1,6 @@
 ---
 name: devflow-build
-description: Markdown-first DevFlow implementation. Use for /32-Code, implementing an approved .workspaces/specs/{ID}-*/plan.md one unchecked subtask at a time, updating plan.md checkboxes and task_log.md, and running planned verification. Requires Approval Status: Approved before editing source. Does not create JSON artifacts, use dashboards, or require a CLI.
+description: Markdown-first DevFlow implementation. Use for devflow-build, implementing an approved .workspaces/specs/{ID}-*/plan.md one unchecked subtask at a time, updating plan.md checkboxes and task_log.md, and running planned verification. Requires Approval Status: Approved before editing source. Does not create JSON artifacts, use dashboards, or require a CLI.
 ---
 
 # DevFlow Build
@@ -35,12 +35,12 @@ Approved by: {name}
 Approved at: {date/time}
 ```
 
-If status is not `Approved`, stop and ask the user to approve `/31-Plan`.
+If status is not `Approved`, stop and ask the user to approve the plan from `devflow-plan`.
 
 ## Input
 
 ```text
-/32-Code {ID}
+devflow-build {ID}
 ```
 
 ## Process
@@ -54,7 +54,7 @@ If status is not `Approved`, stop and ask the user to approve `/31-Plan`.
 7. Run the subtask verification.
 8. Update the subtask checkbox in `plan.md`.
 9. Append an entry to `task_log.md` with action, files changed, verification command, result, and notes.
-10. If implementation reveals the plan is wrong, stop and recommend `/31-Plan {ID}`.
+10. If implementation reveals the plan is wrong, stop and recommend `devflow-plan {ID}`.
 
 ## Output
 
@@ -64,4 +64,4 @@ Report:
 - Files changed
 - Verification commands run
 - Any deviations from plan
-- Next command: `/33-Verify {ID}`
+- Next skill: `devflow-verify {ID}`

@@ -1,6 +1,6 @@
 ---
 name: devflow-plan
-description: Markdown-first DevFlow implementation planning. Use for /31-Plan, reading .workspaces/specs/{ID}-*/spec.md, exploring relevant codebase context, writing plan.md with phases, subtasks, test decisions, verification commands, and an Approval block set to Pending. Does not edit source code, create JSON artifacts, use dashboards, or require a CLI.
+description: Markdown-first DevFlow implementation planning. Use for devflow-plan, reading .workspaces/specs/{ID}-*/spec.md, exploring relevant codebase context, writing plan.md with phases, subtasks, test decisions, verification commands, and an Approval block set to Pending. Does not edit source code, create JSON artifacts, use dashboards, or require a CLI.
 ---
 
 # DevFlow Plan
@@ -25,7 +25,7 @@ Before working, read:
 ## Input
 
 ```text
-/31-Plan {ID}
+devflow-plan {ID}
 ```
 
 ## Process
@@ -50,7 +50,7 @@ Approved at:
 
 6. For every subtask, include change, files, patterns, test decision, verification, and expected result.
 7. Append a planning entry to `task_log.md` when it exists.
-8. Report the plan path and recommend `/32-Code {ID}` after approval.
+8. Report the plan path and recommend `devflow-build {ID}` after approval.
 
 ## Test Decision Values
 

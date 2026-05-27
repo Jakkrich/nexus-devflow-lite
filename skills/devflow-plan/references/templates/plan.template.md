@@ -56,5 +56,4 @@ Verification:
 
 ## Next
 
-After approval: `/32-Code {ID}`
-
+After approval: `devflow-build {ID}`

@@ -1,6 +1,6 @@
 ---
 name: devflow-ask
-description: Markdown-first DevFlow task intake. Use for /30-Task, creating .workspaces/specs/{ID}-{slug}/ task folders, writing spec.md and task_log.md, clarifying scope, acceptance criteria, constraints, and open questions. Does not edit source code, create JSON artifacts, use dashboards, or require a CLI.
+description: Markdown-first DevFlow task intake. Use for devflow-ask, creating .workspaces/specs/{ID}-{slug}/ task folders, writing spec.md and task_log.md, clarifying scope, acceptance criteria, constraints, and open questions. Does not edit source code, create JSON artifacts, use dashboards, or require a CLI.
 ---
 
 # DevFlow Ask
@@ -21,7 +21,7 @@ Before working, read `../_shared/references/devflow-conventions.md` when availab
 ## Input
 
 ```text
-/30-Task {ID?} {Title} {Description?}
+devflow-ask {ID?} {Title} {Description?}
 ```
 
 If `{ID}` is missing, inspect `.workspaces/specs/` and choose the next numeric ID.
@@ -35,7 +35,7 @@ If `{ID}` is missing, inspect `.workspaces/specs/` and choose the next numeric I
 5. Create `spec.md` from `references/templates/spec.template.md`.
 6. Create `task_log.md` from `references/templates/task_log.template.md`.
 7. Record known acceptance criteria, constraints, assumptions, and open questions.
-8. Report the task path and recommend `/31-Plan {ID}`.
+8. Report the task path and recommend `devflow-plan {ID}`.
 
 ## Output
 
@@ -45,4 +45,4 @@ Report:
 - Workflow type
 - Acceptance criteria
 - Open questions
-- Next command: `/31-Plan {ID}`
+- Next skill: `devflow-plan {ID}`
