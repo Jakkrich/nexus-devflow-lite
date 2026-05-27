@@ -1,9 +1,9 @@
 ---
-name: devflow-ask
-description: Markdown-first DevFlow task intake. Use for devflow-ask, creating .workspaces/specs/{ID}-{slug}/ task folders, writing spec.md and task_log.md, clarifying scope, acceptance criteria, constraints, and open questions. Does not edit source code, create JSON artifacts, use dashboards, or require a CLI.
+name: devflow-task
+description: Markdown-first DevFlow task intake. Use for devflow-task, creating .workspaces/specs/{ID}-{slug}/ task folders, writing spec.md and task_log.md, clarifying scope, acceptance criteria, constraints, and open questions. Does not edit source code, create JSON artifacts, use dashboards, or require a CLI.
 ---
 
-# DevFlow Ask
+# DevFlow Task
 
 Create a task workspace and initial human-readable artifacts.
 
@@ -21,7 +21,7 @@ Before working, read `../_shared/references/devflow-conventions.md` when availab
 ## Input
 
 ```text
-devflow-ask {ID?} {Title} {Description?}
+devflow-task {ID?} {Title} {Description?}
 ```
 
 If `{ID}` is missing, inspect `.workspaces/specs/` and choose the next numeric ID.

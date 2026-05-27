@@ -18,7 +18,7 @@ npx skills add Jakkrich/nexus-devflow-lite
 Install one skill:
 
 ```bash
-npx skills add Jakkrich/nexus-devflow-lite --skill devflow-ask
+npx skills add Jakkrich/nexus-devflow-lite --skill devflow-task
 ```
 
 ## Current Status
@@ -27,14 +27,14 @@ Usable now:
 
 | Skill | Stage | Status | Purpose |
 | --- | --- | --- | --- |
-| `devflow-ask` | Task intake | Ready | Create a task workspace with `spec.md` and `task_log.md`. |
+| `devflow-task` | Task intake | Ready | Create a task workspace with `spec.md` and `task_log.md`. |
 | `devflow-plan` | Planning | Ready | Create `plan.md` with phases, subtasks, test decisions, and approval gate. |
 | `devflow-build` | Build | Ready with approval gate | Implement an approved plan one subtask at a time. |
 | `devflow-verify` | Verification | Ready | Produce `qa_report.md` with evidence and pass/fail verdict. |
 
 Dry-run coverage so far:
 
-- `devflow-ask`: created Markdown task artifacts.
+- `devflow-task`: created Markdown task artifacts.
 - `devflow-plan`: created `plan.md` with `Approval: Pending`.
 - `devflow-build`: stopped correctly when approval was pending.
 - `devflow-build`: started approved build path and created tests for the first subtask.
@@ -59,7 +59,7 @@ Task artifacts live in the target project:
 ## Workflow
 
 ```text
-devflow-ask    -> task intake
+devflow-task   -> task intake
 devflow-plan   -> implementation plan
 devflow-build  -> approved implementation
 devflow-verify -> verification report
@@ -68,7 +68,7 @@ devflow-verify -> verification report
 Typical flow:
 
 ```text
-devflow-ask 001 Add authentication lockout
+devflow-task 001 Add authentication lockout
 devflow-plan 001
 # user reviews plan.md and approves it
 devflow-build 001
@@ -81,7 +81,7 @@ devflow-verify 001
 - No JSON artifacts.
 - No dashboard.
 - No CLI dependency.
-- No source edits during `devflow-ask` or `devflow-plan`.
+- No source edits during `devflow-task` or `devflow-plan`.
 - `devflow-build` requires `plan.md` approval status to be `Approved`.
 - `devflow-verify` requires real evidence before a pass verdict.
 
@@ -91,7 +91,7 @@ devflow-verify 001
 skills/
   _shared/
     references/devflow-conventions.md
-  devflow-ask/
+  devflow-task/
     SKILL.md
     references/templates/spec.template.md
     references/templates/task_log.template.md
@@ -120,14 +120,14 @@ Recommended next steps:
 
 ## Proposed: devflow-feature
 
-`devflow-feature` should be the discovery skill before `devflow-ask`.
+`devflow-feature` should be the discovery skill before `devflow-task`.
 
 Purpose:
 
 - Pull hidden requirements out of the user through short interaction.
 - Discuss feasibility, risks, and alternatives before creating a task.
 - Turn vague feature ideas into a concise feature brief.
-- Recommend whether to proceed to `devflow-ask`.
+- Recommend whether to proceed to `devflow-task`.
 
 Suggested artifacts:
 
@@ -140,7 +140,7 @@ Recommended flow:
 
 ```text
 devflow-feature Add team invite flow
-devflow-ask 001 Add team invite flow
+devflow-task 001 Add team invite flow
 devflow-plan 001
 devflow-build 001
 devflow-verify 001
