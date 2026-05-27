@@ -27,6 +27,7 @@ Usable now:
 
 | Skill | Stage | Status | Purpose |
 | --- | --- | --- | --- |
+| `devflow-feature` | Feature discovery | Ready | Turn a feature idea into `feature_brief.md` through focused interaction. |
 | `devflow-task` | Task intake | Ready | Create a task workspace with `spec.md` and `task_log.md`. |
 | `devflow-plan` | Planning | Ready | Create `plan.md` with phases, subtasks, test decisions, and approval gate. |
 | `devflow-build` | Build | Ready with approval gate | Implement an approved plan one subtask at a time. |
@@ -34,6 +35,7 @@ Usable now:
 
 Dry-run coverage so far:
 
+- `devflow-feature`: added as the lightweight discovery step before task intake.
 - `devflow-task`: created Markdown task artifacts.
 - `devflow-plan`: created `plan.md` with `Approval: Pending`.
 - `devflow-build`: stopped correctly when approval was pending.
@@ -56,9 +58,17 @@ Task artifacts live in the target project:
   qa_report.md
 ```
 
+Feature discovery artifacts live in:
+
+```text
+.workspaces/features/{slug}/
+  feature_brief.md
+```
+
 ## Workflow
 
 ```text
+devflow-feature -> feature discovery before task intake
 devflow-task   -> task intake
 devflow-plan   -> implementation plan
 devflow-build  -> approved implementation
@@ -68,6 +78,7 @@ devflow-verify -> verification report
 Typical flow:
 
 ```text
+devflow-feature Add authentication lockout
 devflow-task 001 Add authentication lockout
 devflow-plan 001
 # user reviews plan.md and approves it
@@ -91,6 +102,9 @@ devflow-verify 001
 skills/
   _shared/
     references/devflow-conventions.md
+  devflow-feature/
+    SKILL.md
+    references/templates/feature_brief.template.md
   devflow-task/
     SKILL.md
     references/templates/spec.template.md
@@ -112,15 +126,15 @@ skills/
 
 Recommended next steps:
 
-1. Add `devflow-feature` for interactive feature discovery before task intake.
+1. Dry-run `devflow-feature` on a vague feature idea.
 2. Refine `devflow-build` for TDD expected-failure subtasks.
 3. Complete an approved build path through implementation.
 4. Dry-run `devflow-verify` after a completed build.
 5. Add later skills only after core flow is stable: `devflow-test`, `devflow-debug`, `devflow-review`, `devflow-commit`.
 
-## Proposed: devflow-feature
+## devflow-feature
 
-`devflow-feature` should be the discovery skill before `devflow-task`.
+`devflow-feature` is the discovery skill before `devflow-task`.
 
 Purpose:
 
