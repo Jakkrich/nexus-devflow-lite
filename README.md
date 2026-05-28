@@ -25,26 +25,26 @@ npx skills add Jakkrich/nexus-devflow-lite --skill devflow-task
 
 All skills are usable now.
 
-| Skill | Phase | What it does | Use case |
-| --- | --- | --- | --- |
-| `devflow-feature` | 3 | Turns a feature idea into a focused `feature_brief.md`. | "I want team invites, but the flow and edge cases are not clear yet." |
-| `devflow-task` | 1 | Creates a task workspace with `spec.md` and `task_log.md`. | "Turn this agreed feature into a concrete task." |
-| `devflow-plan` | 1 | Creates `plan.md` with phases, subtasks, test decisions, and approval gate. | "Plan task 001 before coding." |
-| `devflow-build` | 1 | Implements an approved plan one subtask at a time. | "Build the first unchecked subtask after I approve the plan." |
-| `devflow-verify` | 1 | Creates `qa_report.md` with evidence and pass/fail verdict. | "Check whether the implementation really satisfies the task." |
-| `devflow-test` | 3 | Creates or runs focused test strategy and `test_report.md`. | "What tests are missing for this task?" |
-| `devflow-debug` | 3 | Creates `debug_report.md` for failures and root-cause investigation. | "This test fails; find the real cause." |
-| `devflow-review` | 3 | Creates `review_report.md` for plans, code, PRs, or tasks. | "Review this change before merge." |
-| `devflow-commit` | 3 | Creates `commit_summary.md` and suggests a commit message. | "Summarize verified work for commit." |
-| `devflow-frontend` | 4 | Guides UI, browser, accessibility, and frontend implementation choices. | "Review this form flow and responsive behavior." |
-| `devflow-backend` | 4 | Guides API, service, auth, and backend implementation choices. | "Design the endpoint and error contract." |
-| `devflow-database` | 4 | Guides schema, migration, index, and data-integrity choices. | "Should this feature add a table, index, or migration?" |
-| `devflow-security` | 4 | Guides auth, permissions, token, validation, and abuse-risk choices. | "Check invite tokens, rate limits, or permission risks." |
-| `devflow-prd` | 5 | Creates `prd.md` for larger product initiatives. | "This is bigger than one feature; write a PRD first." |
-| `devflow-research` | 5 | Creates `research.md` for codebase or external research. | "Research existing patterns before planning." |
-| `devflow-wiki` | 5 | Creates `wiki_note.md` for durable project knowledge. | "Save this verified convention for future tasks." |
-| `devflow-changelog` | 5 | Creates `changelog_entry.md` after verified work. | "Draft a changelog entry from this completed task." |
-| `devflow-insight` | 5 | Creates `insight.md` from completed or failed work. | "Extract lessons from this task or bug." |
+| Skill | What it does | Use case |
+| --- | --- | --- |
+| `devflow-feature` | Turns a feature idea into a focused `feature_brief.md`. | "I want team invites, but the flow and edge cases are not clear yet." |
+| `devflow-task` | Creates a task workspace with `spec.md` and `task_log.md`. | "Turn this agreed feature into a concrete task." |
+| `devflow-plan` | Creates `plan.md` with phases, subtasks, test decisions, and approval gate. | "Plan task 001 before coding." |
+| `devflow-build` | Implements an approved plan one subtask at a time. | "Build the first unchecked subtask after I approve the plan." |
+| `devflow-verify` | Creates `qa_report.md` with evidence and pass/fail verdict. | "Check whether the implementation really satisfies the task." |
+| `devflow-test` | Creates or runs focused test strategy and `test_report.md`. | "What tests are missing for this task?" |
+| `devflow-debug` | Creates `debug_report.md` for failures and root-cause investigation. | "This test fails; find the real cause." |
+| `devflow-review` | Creates `review_report.md` for plans, code, PRs, or tasks. | "Review this change before merge." |
+| `devflow-commit` | Creates `commit_summary.md` and suggests a commit message. | "Summarize verified work for commit." |
+| `devflow-frontend` | Guides UI, browser, accessibility, and frontend implementation choices. | "Review this form flow and responsive behavior." |
+| `devflow-backend` | Guides API, service, auth, and backend implementation choices. | "Design the endpoint and error contract." |
+| `devflow-database` | Guides schema, migration, index, and data-integrity choices. | "Should this feature add a table, index, or migration?" |
+| `devflow-security` | Guides auth, permissions, token, validation, and abuse-risk choices. | "Check invite tokens, rate limits, or permission risks." |
+| `devflow-prd` | Creates `prd.md` for larger product initiatives. | "This is bigger than one feature; write a PRD first." |
+| `devflow-research` | Creates `research.md` for codebase or external research. | "Research existing patterns before planning." |
+| `devflow-wiki` | Creates `wiki_note.md` for durable project knowledge. | "Save this verified convention for future tasks." |
+| `devflow-changelog` | Creates `changelog_entry.md` after verified work. | "Draft a changelog entry from this completed task." |
+| `devflow-insight` | Creates `insight.md` from completed or failed work. | "Extract lessons from this task or bug." |
 
 Dry-run coverage:
 
