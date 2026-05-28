@@ -1,15 +1,12 @@
 # Nexus DevFlow Lite
 
-ชุด workflow ของ DevFlow แบบ Markdown-first ที่แพ็กเป็น agent skills สำหรับติดตั้งใช้งานได้ทันที
+Nexus DevFlow Lite คือชุด agent skills สำหรับช่วยทำงานพัฒนา software แบบ Markdown-first ตั้งแต่คุย idea, แตก task, วางแผน, build, verify, test, debug, review ไปจนถึงสรุป commit
 
-นี่คือเวอร์ชันเบาของ Nexus-DevFlow:
+เหมาะกับทีมที่อยากให้ AI ทำงานเป็นขั้นตอน มีหลักฐานตรวจสอบได้ และไม่อยากพึ่ง JSON, dashboard หรือ CLI เฉพาะทาง
 
-- ไม่มี JSON artifacts
-- ไม่มี dashboard
-- ไม่ผูกกับ CLI
-- ไม่ copy agent library ทั้งชุด
+## ติดตั้ง
 
-ติดตั้งจาก repo นี้:
+ติดตั้งทั้งชุด:
 
 ```bash
 npx skills add Jakkrich/nexus-devflow-lite
@@ -21,44 +18,63 @@ npx skills add Jakkrich/nexus-devflow-lite
 npx skills add Jakkrich/nexus-devflow-lite --skill devflow-task
 ```
 
-## รายการ Skill
+หลังติดตั้งแล้ว ให้เรียกชื่อ skill ใน prompt ได้โดยตรง เช่น:
 
-ทุก skill ในชุดนี้พร้อมใช้งานแล้ว
+```text
+devflow-feature ช่วยแตก idea ระบบ team invite
+devflow-task 001 Add team invite flow
+devflow-plan 001
+devflow-build 001
+devflow-verify 001
+```
+
+## ใช้งานแบบไหนดี
+
+Flow หลักที่แนะนำ:
+
+```text
+devflow-feature -> devflow-task -> devflow-plan -> devflow-build -> devflow-verify
+```
+
+ตัวอย่าง:
+
+```text
+devflow-feature อยากเพิ่มระบบ authentication lockout
+devflow-task 001 Add authentication lockout
+devflow-plan 001
+# ตรวจ plan.md แล้ว approve ก่อน
+devflow-build 001
+devflow-verify 001
+```
+
+สำหรับงานเสริม ให้เรียก skill เฉพาะทางตามสถานการณ์ เช่น `devflow-test`, `devflow-debug`, `devflow-review`, `devflow-security` หรือ `devflow-database`
+
+## รายการ Skill
 
 | Skill | ทำอะไร | ใช้เมื่อไหร่ |
 | --- | --- | --- |
-| `devflow-feature` | เปลี่ยน feature idea ให้เป็น `feature_brief.md` ที่ชัดและโฟกัส | "อยากมี team invites แต่ flow กับ edge cases ยังไม่ชัด" |
-| `devflow-task` | สร้าง task workspace พร้อม `spec.md` และ `task_log.md` | "เอา feature ที่ตกลงแล้วมาแตกเป็น task ที่ทำงานต่อได้" |
-| `devflow-plan` | สร้าง `plan.md` พร้อม phases, subtasks, test decisions และ approval gate | "วางแผน task 001 ก่อนเริ่ม coding" |
-| `devflow-build` | implement plan ที่ approved แล้วทีละ subtask | "เริ่ม build subtask แรกหลังจาก approve plan แล้ว" |
-| `devflow-verify` | สร้าง `qa_report.md` พร้อม evidence และ verdict แบบ pass/fail | "ตรวจว่าที่ implement ตรงตาม task จริงไหม" |
-| `devflow-test` | สร้างหรือรัน focused test strategy และ `test_report.md` | "task นี้ยังขาด test อะไรบ้าง" |
-| `devflow-debug` | สร้าง `debug_report.md` สำหรับ failure และ root-cause investigation | "test นี้ fail ช่วยหา cause จริง" |
-| `devflow-review` | สร้าง `review_report.md` สำหรับ plan, code, PR หรือ task | "review change นี้ก่อน merge" |
-| `devflow-commit` | สร้าง `commit_summary.md` และเสนอ commit message | "สรุปงานที่ verify แล้วเพื่อ commit" |
-| `devflow-frontend` | ช่วยตัดสินใจเรื่อง UI, browser, accessibility และ frontend implementation | "review form flow และ responsive behavior" |
-| `devflow-backend` | ช่วยตัดสินใจเรื่อง API, service, auth และ backend implementation | "ออกแบบ endpoint และ error contract" |
-| `devflow-database` | ช่วยตัดสินใจเรื่อง schema, migration, index และ data integrity | "feature นี้ควรเพิ่ม table, index หรือ migration ไหม" |
-| `devflow-security` | ช่วยตัดสินใจเรื่อง auth, permissions, token, validation และ abuse risk | "ตรวจ invite tokens, rate limits หรือ permission risks" |
-| `devflow-prd` | สร้าง `prd.md` สำหรับ product initiative ที่ใหญ่กว่า feature เดียว | "เรื่องนี้ใหญ่กว่า feature เดียว ควรเขียน PRD ก่อน" |
-| `devflow-research` | สร้าง `research.md` สำหรับ research โค้ดหรือข้อมูลภายนอก | "สำรวจ pattern เดิมใน codebase ก่อนวางแผน" |
-| `devflow-wiki` | สร้าง `wiki_note.md` สำหรับเก็บ project knowledge ที่ใช้ซ้ำได้ | "เก็บ convention ที่ verify แล้วไว้ใช้ใน task ถัดไป" |
-| `devflow-changelog` | สร้าง `changelog_entry.md` หลังงานผ่าน verification | "ร่าง changelog จาก task ที่เสร็จแล้ว" |
-| `devflow-insight` | สร้าง `insight.md` จากงานที่สำเร็จหรือล้มเหลว | "ดึงบทเรียนจาก task หรือ bug นี้" |
+| `devflow-feature` | คุยและสกัด feature idea ให้ชัดก่อนแตกเป็น task | idea ยังหลวม มี requirement, risk หรือ edge case ที่ต้องคุยเพิ่ม |
+| `devflow-task` | สร้าง task workspace พร้อม `spec.md` และ `task_log.md` | feature หรือ bug ถูกนิยามพอจะเริ่มเป็น task แล้ว |
+| `devflow-plan` | สร้าง `plan.md` พร้อม subtasks, test decisions และ approval gate | ต้องการแผน implementation ก่อนให้ AI แก้ code |
+| `devflow-build` | implement ตาม `plan.md` ที่ approved แล้วทีละ subtask | แผนผ่านแล้ว และพร้อมให้ AI ลงมือแก้ code |
+| `devflow-verify` | ตรวจงานและสร้าง `qa_report.md` พร้อม evidence และ pass/fail verdict | build เสร็จแล้ว ต้องการตรวจว่าตรง spec จริงไหม |
+| `devflow-test` | วางหรือรัน focused test strategy และสร้าง `test_report.md` | อยากรู้ว่าควร test อะไร หรือ test ที่มีพอไหม |
+| `devflow-debug` | วิเคราะห์ failure และสร้าง `debug_report.md` | test fail, behavior แปลก หรือยังไม่รู้ root cause |
+| `devflow-review` | review plan, code, PR หรือ task แล้วสร้าง `review_report.md` | ต้องการ second opinion ก่อน merge หรือก่อนเดินหน้าต่อ |
+| `devflow-commit` | สรุปงานที่ verify แล้วเป็น `commit_summary.md` และเสนอ commit message | ก่อน commit งานที่ทำเสร็จ |
+| `devflow-frontend` | ช่วยคิดเรื่อง UI, UX, browser behavior, responsive และ accessibility | งานกระทบ frontend หรือ user flow |
+| `devflow-backend` | ช่วยคิดเรื่อง API, service, auth, error handling และ backend design | งานกระทบ backend หรือ service contract |
+| `devflow-database` | ช่วยคิดเรื่อง schema, migration, index และ data integrity | งานกระทบ database หรือข้อมูลถาวร |
+| `devflow-security` | ช่วยตรวจ auth, permission, token, validation และ abuse risk | งานมี security หรือ permission risk |
+| `devflow-prd` | สร้าง `prd.md` สำหรับ initiative ที่ใหญ่กว่า feature เดียว | เรื่องใหญ่ ต้องคุย product direction ก่อนแตก task |
+| `devflow-research` | สร้าง `research.md` จากการสำรวจ codebase หรือข้อมูลอ้างอิง | ต้องเข้าใจระบบเดิมก่อนวางแผน |
+| `devflow-wiki` | สร้าง `wiki_note.md` สำหรับเก็บความรู้ที่ควรใช้ซ้ำ | มี convention หรือ decision ที่ควรจำไว้ |
+| `devflow-changelog` | สร้าง `changelog_entry.md` หลังงานผ่าน verification | ต้องการข้อความ changelog จากงานที่เสร็จ |
+| `devflow-insight` | สร้าง `insight.md` จากบทเรียนของงานหรือ bug | อยากสรุปสิ่งที่เรียนรู้ไว้ใช้ต่อ |
 
-ผลการ dry-run:
+## Artifact ที่จะได้
 
-- `devflow-feature`: เพิ่มเป็น lightweight discovery step ก่อน task intake
-- `devflow-task`: สร้าง Markdown task artifacts ได้
-- `devflow-plan`: สร้าง `plan.md` พร้อม `Approval: Pending` ได้
-- `devflow-build`: หยุดถูกต้องเมื่อ approval ยัง pending
-- `devflow-build`: เริ่ม approved build path และสร้าง expected failing tests สำหรับ subtask แรกได้
-- `devflow-verify`: สร้าง `qa_report.md` แบบผ่านหลัง build เสร็จได้
-- Phase 3-5 skills ถูกทดลองรวมใน overall dry-run แล้ว
-
-## รูปแบบ Artifact
-
-Task artifacts จะอยู่ใน target project:
+สำหรับ task ทั่วไป:
 
 ```text
 .workspaces/specs/{ID}-{slug}/
@@ -68,119 +84,65 @@ Task artifacts จะอยู่ใน target project:
   qa_report.md
 ```
 
-Feature discovery artifacts จะอยู่ใน:
+สำหรับ feature discovery:
 
 ```text
 .workspaces/features/{slug}/
   feature_brief.md
 ```
 
-## Workflow การใช้งาน
+skill อื่นอาจสร้างไฟล์รายงานเพิ่มเติมตามงาน เช่น:
 
 ```text
-devflow-feature -> feature discovery before task intake
-devflow-task   -> task intake
-devflow-plan   -> implementation plan
-devflow-build  -> approved implementation
-devflow-verify -> verification report
-devflow-test   -> focused test strategy/report
-devflow-debug  -> root-cause report
-devflow-review -> review report
-devflow-commit -> commit summary
+test_report.md
+debug_report.md
+review_report.md
+commit_summary.md
+prd.md
+research.md
+wiki_note.md
+changelog_entry.md
+insight.md
 ```
 
-ตัวอย่าง flow ปกติ:
+## กติกาสำคัญ
 
-```text
-devflow-feature Add authentication lockout
-devflow-task 001 Add authentication lockout
-devflow-plan 001
-# user reviews plan.md and approves it
-devflow-build 001
-devflow-verify 001
-```
-
-## กติกา
-
-- Markdown-first
+- ใช้ Markdown เป็น artifact หลัก
 - ไม่มี JSON artifacts
 - ไม่มี dashboard
-- ไม่ผูกกับ CLI
-- ห้ามแก้ source code ระหว่าง `devflow-task` หรือ `devflow-plan`
-- `devflow-build` ต้องมี approval status ใน `plan.md` เป็น `Approved`
+- ไม่ต้องใช้ CLI เฉพาะของ Nexus DevFlow
+- `devflow-task` และ `devflow-plan` ไม่ควรแก้ source code
+- `devflow-build` ต้องรอให้ `plan.md` ถูก approve ก่อน
 - `devflow-verify` ต้องมี evidence จริงก่อนให้ verdict เป็น pass
 
-## โครงสร้าง Repo
+## ตัวอย่าง Prompt
+
+เริ่มจาก feature idea:
 
 ```text
-skills/
-  _shared/
-    references/devflow-conventions.md
-  devflow-feature/
-    SKILL.md
-    references/templates/feature_brief.template.md
-  devflow-task/
-    SKILL.md
-    references/templates/spec.template.md
-    references/templates/task_log.template.md
-  devflow-plan/
-    SKILL.md
-    references/agents/planner.md
-    references/templates/plan.template.md
-  devflow-build/
-    SKILL.md
-    references/agents/coder.md
-  devflow-verify/
-    SKILL.md
-    references/agents/reviewer.md
-    references/templates/qa_report.template.md
-  devflow-test/
-  devflow-debug/
-  devflow-review/
-  devflow-commit/
-  devflow-frontend/
-  devflow-backend/
-  devflow-database/
-  devflow-security/
-  devflow-prd/
-  devflow-research/
-  devflow-wiki/
-  devflow-changelog/
-  devflow-insight/
+devflow-feature อยากเพิ่มระบบ invite สมาชิกเข้าทีม ช่วยถาม requirement และ risk ที่ควรคิดก่อน
 ```
 
-## งานถัดไป
-
-step ถัดไปที่แนะนำ:
-
-1. ทดลอง approved build path จนถึง implementation จริง
-2. Dry-run `devflow-verify` หลัง build เสร็จสมบูรณ์
-3. Dry-run Phase 3-5 skills กับตัวอย่างเดียวแบบ end-to-end
-
-## devflow-feature
-
-`devflow-feature` คือ discovery skill ที่ใช้ก่อน `devflow-task`
-
-เป้าหมาย:
-
-- ดึง requirement ที่ยังซ่อนอยู่จากผู้ใช้ด้วย interaction สั้น ๆ
-- คุย feasibility, risks และ alternatives ก่อนสร้าง task
-- เปลี่ยน feature idea ที่ยังหลวมให้เป็น feature brief ที่กระชับ
-- แนะนำว่าควรไปต่อที่ `devflow-task` หรือยัง
-
-Artifact ที่แนะนำ:
+แตกเป็น task:
 
 ```text
-.workspaces/features/{slug}/
-  feature_brief.md
-```
-
-Flow ที่แนะนำ:
-
-```text
-devflow-feature Add team invite flow
 devflow-task 001 Add team invite flow
+```
+
+วางแผนก่อน build:
+
+```text
 devflow-plan 001
+```
+
+เริ่ม build หลัง approve:
+
+```text
 devflow-build 001
+```
+
+ตรวจงาน:
+
+```text
 devflow-verify 001
 ```
